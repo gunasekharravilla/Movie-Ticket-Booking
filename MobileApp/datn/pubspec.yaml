@@ -3,7 +3,7 @@ description: A movie tickets booking and management application using Flutter an
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -25,6 +25,7 @@ environment:
 # $3 get $1;
 
 dependencies:
+  qr_flutter: ^3.2.0
   flutter_speed_dial: ^2.1.1
   firebase_core: ^1.0.1
   octo_image: ^1.0.0-nullsafety.1
@@ -50,6 +51,7 @@ dependencies:
   flutter_google_places: 0.2.6
   datetime_picker_formfield: ^2.0.0
   intl: ^0.17.0
+  intl_utils: ^2.1.0
   tuple: ^2.0.0
   rxdart: ^0.26.0
   http: ^0.13.0
@@ -59,7 +61,6 @@ dependencies:
   path_provider: ^2.0.1
   collection: ^1.15.0
   async: ^2.5.0
-  google_api_headers: ^1.0.0
 
   rx_redux: ^2.2.0-nullsafety.2
   distinct_value_connectable_stream: ^1.2.0-nullsafety.5
@@ -71,12 +72,13 @@ dependencies:
   rxdart_ext: ^0.0.1
   listenable_stream: ^1.0.0-nullsafety.1
   stream_loader: ^1.1.0-nullsafety.2
+  google_api_headers: ^1.0.0
 
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  pedantic: ^1.11.0
+  pedantic: ^1.10.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -108,7 +110,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -133,6 +134,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Reggae One
+      fonts:
+        - asset: assets/fonts/ReggaeOne-Regular.ttf
     - family: Montserrat
       fonts:
         - asset: assets/fonts/Montserrat-Thin.ttf

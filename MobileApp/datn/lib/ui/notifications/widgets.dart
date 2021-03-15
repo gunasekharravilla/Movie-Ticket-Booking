@@ -8,6 +8,8 @@ import '../../domain/model/notification.dart';
 import '../../domain/model/reservation.dart';
 import '../../generated/l10n.dart';
 import '../../utils/type_defs.dart';
+import '../app_scaffold.dart';
+import '../profile/reservation_detail/reservation_detail_page.dart';
 import '../widgets/age_type.dart';
 
 class NotificationItemWidget extends StatelessWidget {
@@ -20,7 +22,6 @@ class NotificationItemWidget extends StatelessWidget {
 
   NotificationItemWidget(
       this.item, this.dateFormat, this.onDelete, this.onTapItem);
-
   @override
   Widget build(BuildContext context) {
     final reservation = item.reservation;

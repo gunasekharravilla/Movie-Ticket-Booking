@@ -1,5 +1,4 @@
 export 'delay.dart';
-export 'dialog.dart';
 export 'error.dart';
 export 'intl.dart';
 export 'iterable.dart';
@@ -9,3 +8,4 @@ export 'snackbar.dart';
 export 'streams.dart';
 export 'type_defs.dart';
 export 'validators.dart';
+export 'dialog.dart';

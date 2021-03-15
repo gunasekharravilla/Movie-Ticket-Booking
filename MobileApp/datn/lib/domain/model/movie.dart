@@ -7,7 +7,7 @@ import 'person.dart';
 part 'movie.g.dart';
 
 enum AgeType {
-  P,
+  UA,
   C13,
   C16,
   C18,

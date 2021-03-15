@@ -13,14 +13,15 @@ import '../../../../generated/l10n.dart';
 import '../checkout_page.dart';
 
 class BottomRow extends StatelessWidget {
-  final currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: '');
+  final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹');
 
   final BuiltList<Tuple2<Product, int>> comboItems;
   final BuiltList<Ticket> tickets;
   final VoidAction onSubmit;
 
   final int totalCount;
-  final int originalTotalPrice;
+
+  final double originalTotalPrice;
 
   BottomRow({
     Key? key,
@@ -29,7 +30,8 @@ class BottomRow extends StatelessWidget {
     required this.onSubmit,
   })   : totalCount =
             comboItems.fold<int>(0, (acc, e) => acc + e.item2) + tickets.length,
-        originalTotalPrice = tickets.fold<int>(0, (acc, e) => acc + e.price) +
+        originalTotalPrice = tickets.fold<double>(
+                0, (acc, e) => acc + e.price + (e.price * 0.151)) +
             comboItems.fold<int>(0, (acc, e) => acc + e.item1.price * e.item2),
         super(key: key);
 
@@ -55,7 +57,7 @@ class BottomRow extends StatelessWidget {
           children: [
             Expanded(
               child: InkWell(
-                onTap: () => showOrder(context, promotion),
+                onTap: () => showOrder(context, promotion!),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -98,7 +100,7 @@ class BottomRow extends StatelessWidget {
                     Expanded(
                       child: Center(
                         child: Text(
-                          '${currencyFormat.format(totalPrice)} VND',
+                          '${currencyFormat.format(totalPrice)} INR',
                           style: priceStyle.copyWith(fontSize: 16),
                         ),
                       ),
@@ -141,14 +143,13 @@ class BottomRow extends StatelessWidget {
     );
   }
 
-  void showOrder(BuildContext context, Promotion? promotion) {
+  void showOrder(BuildContext context, Promotion promotion) {
     final style = Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 15);
     final style2 = style.copyWith(fontSize: 17);
     final titleStyle =
         Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 13);
 
     final ticketsByCount = tickets.groupListsBy((i) => i.seat.count).entries;
-
     final children = [
       ...[
         for (var item in ticketsByCount)
@@ -159,7 +160,10 @@ class BottomRow extends StatelessWidget {
                     style: titleStyle,
                   ),
                   subtitle: Text(
-                    currencyFormat.format(item.value[0].price) + ' VND',
+                    currencyFormat.format(item.value[0].price) +
+                        '+'
+                            '${item.value[0].price * 0.151}'
+                            'charges',
                     style: style,
                   ),
                   trailing: Text(
@@ -173,7 +177,10 @@ class BottomRow extends StatelessWidget {
                     style: titleStyle,
                   ),
                   subtitle: Text(
-                    currencyFormat.format(item.value[0].price) + ' VND',
+                    currencyFormat.format(item.value[0].price) +
+                        '+'
+                            '${item.value[0].price * 0.151}'
+                            'charges',
                     style: style,
                   ),
                   trailing: Text(
@@ -190,7 +197,7 @@ class BottomRow extends StatelessWidget {
               style: titleStyle,
             ),
             subtitle: Text(
-              currencyFormat.format(item.item1.price) + ' VND',
+              currencyFormat.format(item.item1.price) + ' INR',
               style: style,
             ),
             trailing: Text(

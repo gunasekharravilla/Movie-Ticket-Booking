@@ -4,8 +4,8 @@ import 'dart:typed_data';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:rxdart_ext/rxdart_ext.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
+import 'package:rxdart_ext/rxdart_ext.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../domain/model/product.dart';
@@ -143,7 +143,6 @@ class ReservationRepositoryImpl implements ReservationRepository {
       onResume: () {},
       onCancel: () async {
         controller = null;
-
         final completer = Completer<void>.sync();
         socketRef?.emitWithAck(
           'leave',

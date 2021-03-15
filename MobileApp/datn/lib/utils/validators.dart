@@ -2,7 +2,7 @@ class Validator {
   Validator._();
 
   static bool isValidPassword(String password) {
-    return password.length >= 6;
+    return password.length >= 8;
   }
 
   static bool isValidEmail(String email) {

@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart_ext/rxdart_ext.dart';
 

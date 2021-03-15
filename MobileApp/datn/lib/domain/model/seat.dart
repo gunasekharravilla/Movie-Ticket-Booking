@@ -1,4 +1,5 @@
 import 'package:built_value/built_value.dart';
+import 'package:meta/meta.dart';
 
 part 'seat.g.dart';
 

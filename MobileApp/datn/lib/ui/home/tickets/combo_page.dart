@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -47,7 +47,7 @@ class ComboPage extends StatefulWidget {
 
 class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
   Object? token;
-  final currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: '');
+  final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹');
   final startTimeFormat = DateFormat('dd/MM/yy, EEE, hh:mm a');
 
   late int ticketsPrice;
@@ -196,7 +196,7 @@ class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
                           style: titleStyle,
                         ),
                         subtitle: Text(
-                          '${currencyFormat.format(product.price)} VND',
+                          '${currencyFormat.format(product.price)} INR',
                           style: priceStyle,
                         ),
                         leading: OctoImage(
@@ -481,7 +481,7 @@ class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
                 Expanded(
                   child: Center(
                     child: Text(
-                      '${currencyFormat.format(state.totalPrice + ticketsPrice)} VND',
+                      '${currencyFormat.format(state.totalPrice + ticketsPrice + ticketsPrice * 0.151)} INR',
                       style: priceStyle.copyWith(fontSize: 16),
                     ),
                   ),
@@ -525,7 +525,10 @@ class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
                     style: titleStyle,
                   ),
                   subtitle: Text(
-                    currencyFormat.format(item.value[0].price) + ' VND',
+                    currencyFormat.format(item.value[0].price) +
+                        '+'
+                            '${item.value[0].price * 0.151}'
+                            'charges',
                     style: style,
                   ),
                   trailing: Text(
@@ -539,7 +542,10 @@ class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
                     style: titleStyle,
                   ),
                   subtitle: Text(
-                    currencyFormat.format(item.value[0].price) + ' VND',
+                    currencyFormat.format(item.value[0].price) +
+                        '+'
+                            '${item.value[0].price * 0.151}'
+                            'charges',
                     style: style,
                   ),
                   trailing: Text(
@@ -556,7 +562,7 @@ class _ComboPageState extends State<ComboPage> with DisposeBagMixin {
               style: titleStyle,
             ),
             subtitle: Text(
-              currencyFormat.format(item.product.price) + ' VND',
+              currencyFormat.format(item.product.price) + ' INR',
               style: style,
             ),
             trailing: Text(

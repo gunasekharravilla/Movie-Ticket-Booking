@@ -123,7 +123,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Image.asset('assets/images/enjoy.png'),
+                    Image.asset('assets/images/cslogo.png'),
                     const SizedBox(height: 24),
                     Text(
                       S.of(context).enterYourEmailToResetPassword,

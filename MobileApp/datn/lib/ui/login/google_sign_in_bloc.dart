@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_disposebag/flutter_disposebag.dart';
+
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/repository/user_repository.dart';
 import '../../generated/l10n.dart';
 import '../../utils/error.dart';
+
 import 'login_state.dart';
 
 /// BLoC handling google sign in
@@ -26,6 +28,9 @@ class GoogleSignInBloc extends DisposeCallbackBaseBloc {
   }) : super(dispose);
 
   factory GoogleSignInBloc(UserRepository userRepository) {
+    ///Assert
+    assert(userRepository != null, 'userRepository cannot be null');
+
     /// Controllers
     //ignore: close_sinks
     final submitLoginController = PublishSubject<void>();

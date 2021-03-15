@@ -7,8 +7,8 @@ import 'user_local.dart';
 import 'user_local_source.dart';
 
 class UserLocalSourceImpl implements UserLocalSource {
-  static const _tokenKey = 'com.hoc.datn.token';
-  static const _userKey = 'com.hoc.datn.user';
+  static const _tokenKey = 'com.chandu.cscinemas.token';
+  static const _userKey = 'com.chandu.cscinemas.user';
 
   final RxSharedPreferences _preferences;
 

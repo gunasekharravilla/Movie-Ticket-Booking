@@ -523,7 +523,8 @@ class Header extends StatelessWidget {
         ),
         InkWell(
           onTap: () async {
-            final comment = await AppScaffold.navigatorOfCurrentIndex(context).pushNamedX(
+            final comment =
+                await AppScaffold.navigatorOfCurrentIndex(context).pushNamedX(
               AddCommentPage.routeName,
               arguments: movieId,
             );

@@ -27,7 +27,7 @@ class ReservationsPage extends StatefulWidget {
 
 class _ReservationsPageState extends State<ReservationsPage>
     with DisposeBagMixin {
-  final currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: '');
+  final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹');
   final dateFormat = DateFormat('hh:mm a, dd/MM/yy');
 
   RxReduxStore<ReservationsAction, ReservationsState>? store;
@@ -42,7 +42,6 @@ class _ReservationsPageState extends State<ReservationsPage>
           Provider.of<ReservationRepository>(context).getReservation);
       subscribe(s);
       s.dispatch(const LoadFirstPageAction());
-
       scrollController
           .nearBottomEdge$()
           .mapTo<ReservationsAction>(const LoadNextPageAction())
@@ -82,7 +81,6 @@ class _ReservationsPageState extends State<ReservationsPage>
   @override
   Widget build(BuildContext context) {
     final store = this.store!;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).yourReservations),

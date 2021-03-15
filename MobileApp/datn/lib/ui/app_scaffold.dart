@@ -10,6 +10,7 @@ enum AppScaffoldIndex {
   home,
   favorites,
   notifications,
+  tickets,
   profile,
 }
 
@@ -24,6 +25,8 @@ AppScaffoldIndex _fromRawValue(int rawValue) {
     case 2:
       return AppScaffoldIndex.notifications;
     case 3:
+      return AppScaffoldIndex.tickets;
+    case 4:
       return AppScaffoldIndex.profile;
   }
   throw StateError('Missing case $rawValue');
@@ -40,8 +43,10 @@ extension on AppScaffoldIndex {
         return 1;
       case AppScaffoldIndex.notifications:
         return 2;
-      case AppScaffoldIndex.profile:
+      case AppScaffoldIndex.tickets:
         return 3;
+      case AppScaffoldIndex.profile:
+        return 4;
     }
   }
 }
@@ -67,7 +72,6 @@ class AppScaffold extends StatefulWidget {
         context is StatefulElement && context.state is _AppScaffoldState
             ? context.state as _AppScaffoldState
             : context.findAncestorStateOfType<_AppScaffoldState>()!;
-
     final currentIndex = appScaffoldState.currentIndex;
     final navigatorKeys = appScaffoldState.navigatorKeys;
     final newIndex = switchToNewIndex?.rawValue;
@@ -85,7 +89,6 @@ class AppScaffold extends StatefulWidget {
   static NotReplayValueStream<AppScaffoldIndex> currentIndexStream(
           BuildContext context) =>
       context.findAncestorStateOfType<_AppScaffoldState>()!.indexS;
-
   static NavigatorState navigatorByIndex(
     BuildContext context,
     AppScaffoldIndex index,
@@ -136,6 +139,7 @@ class _AppScaffoldState extends State<AppScaffold> with DisposeBagMixin {
       child: RxStreamBuilder<AppScaffoldIndex>(
         stream: indexS,
         builder: (context, snapshot) {
+          assert(snapshot != null);
           final index = snapshot!.rawValue;
 
           return Scaffold(
@@ -184,7 +188,7 @@ class _AppScaffoldState extends State<AppScaffold> with DisposeBagMixin {
 
 extension NavigatorStateX on NavigatorState {
   @optionalTypeArgs
-  Future<T?> pushNamedX<T extends Object?>(
+  Future<T?> pushNamedX<T extends Object>(
     String routeName, {
     Object? arguments,
   }) {

@@ -33,7 +33,7 @@ class DiscountsPage extends StatelessWidget {
     const LinearGradient(
       colors: [
         Color(0xff55DFDD),
-        Color(0xff03C6B6),
+        Color(0xffFED66F),
       ],
       begin: AlignmentDirectional.topEnd,
       end: AlignmentDirectional.bottomStart,
@@ -48,7 +48,7 @@ class DiscountsPage extends StatelessWidget {
     ),
     const LinearGradient(
       colors: [
-        Color(0xff5ED2FD),
+        Color(0xffFED66F),
         Color(0xff079CD2),
       ],
       begin: AlignmentDirectional.topEnd,
@@ -64,7 +64,7 @@ class DiscountsPage extends StatelessWidget {
     ),
     const LinearGradient(
       colors: [
-        Color(0xffC89DC5),
+        Color(0xffFF599F),
         Color(0xff4B68AE),
       ],
       begin: AlignmentDirectional.topEnd,
@@ -244,8 +244,8 @@ class DiscountsPage extends StatelessWidget {
           content: Text(promotion.code),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(true),
               child: Text('OK'),
+              onPressed: () => Navigator.of(dialogContext).pop(true),
             ),
           ],
         );

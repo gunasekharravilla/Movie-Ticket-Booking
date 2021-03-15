@@ -102,22 +102,14 @@ project
             
     -   Flutter
         -   Install [Flutter](https://flutter.dev/docs/get-started/install).
-        -   Using **`stable`** channel:
+        -   Using **`dev`** channel:
             ```bash
-            ❯ flutter channel stable
-            ❯ flutter upgrade
-            ```
-        -   Flutter version:
-            ```bash
-            ❯ flutter --version
-            Flutter 2.0.0 • channel stable • https://github.com/flutter/flutter.git
-            Framework • revision 60bd88df91 (8 days ago) • 2021-03-03 09:13:17 -0800
-            Engine • revision 40441def69
-            Tools • Dart 2.12.0
+            flutter channel dev
+            flutter upgrade
             ```
         -   Install all the packages by: 
             ```bash
-            ❯ flutter packages get
+            flutter packages get
             ```
         -   Create .env file `./MobileApp/datn/.prod.env` and `./MobileApp/movie_admin/.env` has following structure:
             ```bash
@@ -128,12 +120,10 @@ project
             ```
         -   Run app on real devices or emulator by:
             ```bash
-            ❯ flutter run
+            flutter run
             ```
             
 </details>
-
-### User mobile app
 
 
 ### Neo4j Graph

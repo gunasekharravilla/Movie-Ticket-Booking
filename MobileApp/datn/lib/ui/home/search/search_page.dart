@@ -93,7 +93,7 @@ class _SearchPageState extends State<SearchPage> with DisposeBagMixin {
     maxDuration$ = maxDurationS.stream.shareValueDistinct(60 * 3, sync: true)
       ..collect().disposedBy(bag);
 
-    ageType$ = ageTypeS.stream.shareValueDistinct(AgeType.P, sync: true)
+    ageType$ = ageTypeS.stream.shareValueDistinct(AgeType.UA, sync: true)
       ..collect().disposedBy(bag);
   }
 

@@ -30,7 +30,7 @@ class ChangeLocaleFailure implements ChangeLocaleMessage {
 }
 
 class LocaleBloc extends DisposeCallbackBaseBloc {
-  static const _localeKey = 'com.hoc.datn.locale';
+  static const _localeKey = 'com.chandu.cscinemas.locale';
 
   /// Input
   final void Function(Locale) changeLocale;

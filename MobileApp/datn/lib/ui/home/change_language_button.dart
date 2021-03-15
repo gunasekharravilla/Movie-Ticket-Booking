@@ -10,15 +10,14 @@ import '../../utils/utils.dart';
 
 final supportedLocaleTitles = <Locale, String>{
   const Locale('en', ''): 'English - en',
-  const Locale('vi', ''): 'Tiếng Việt - vi',
+  const Locale('te', ''): 'Telugu - te',
 };
 
 class ChangeLanguageButton extends StatefulWidget {
-  final Color? iconColor;
+  final Color iconColor;
 
   const ChangeLanguageButton({Key? key, required this.iconColor})
       : super(key: key);
-
   @override
   _ChangeLanguageButtonState createState() => _ChangeLanguageButtonState();
 }

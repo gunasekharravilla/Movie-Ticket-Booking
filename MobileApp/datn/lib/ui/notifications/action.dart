@@ -142,6 +142,7 @@ class FailureAction implements Action {
   }
 }
 
+// ignore: subtype_of_sealed_class
 class RefreshSuccessAction implements Action {
   final BuiltList<Notification> items;
 
@@ -164,6 +165,7 @@ class RefreshSuccessAction implements Action {
   }
 }
 
+// ignore: subtype_of_sealed_class
 class RefreshFailureAction implements Action {
   final Object error;
 

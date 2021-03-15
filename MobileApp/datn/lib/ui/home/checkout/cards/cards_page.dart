@@ -167,7 +167,7 @@ class _CardsPageState extends State<CardsPage> with DisposeBagMixin {
     super.initState();
 
     fabVisible$ = () {
-      late final  void Function() listener;
+      late final void Function() listener;
       late final PublishSubject<bool> controller;
 
       controller = PublishSubject<bool>(

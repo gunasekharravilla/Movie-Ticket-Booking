@@ -93,7 +93,7 @@ class ComboBloc extends BaseBloc {
           : acc + i.count,
     );
     print('totalCount $newTotalCount');
-    if (newTotalCount > 20) {
+    if (newTotalCount > 5) {
       _messageS.add(const MaxComboCount());
       return state;
     }

@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
     primaryColorDark: const Color(0xff5353cf),
     accentColor: const Color(0xff02a3f7),
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat' 'Reggae One',
     brightness: Brightness.light,
   );
 
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
         context,
       ),
       precacheImage(
-        AssetImage('assets/images/enjoy.png'),
+        AssetImage('assets/images/cslogo.png'),
         context,
       ),
     ]);
@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
           }
 
           return MaterialApp(
-            title: 'Movie ticket',
+            title: 'CS Cinemas',
             theme: themeData,
             home: SplashPage(),
             routes: routes,
@@ -191,7 +191,7 @@ class _SplashPageState extends State<SplashPage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Image.asset('assets/images/enjoy.png'),
+                      Image.asset('assets/images/cslogo.png'),
                       const SizedBox(height: 24),
                       Text(
                         'Book your movie ticket anytime,',
@@ -199,7 +199,7 @@ class _SplashPageState extends State<SplashPage> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        'anywhere with enjoy',
+                        'Entertain in CS CINEMAS on Showtime',
                         style: textStyle,
                         textAlign: TextAlign.center,
                       ),

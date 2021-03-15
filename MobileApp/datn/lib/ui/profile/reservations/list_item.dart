@@ -92,7 +92,7 @@ class ReservationListItem extends StatelessWidget {
                 style: textStyle,
                 children: [
                   TextSpan(
-                    text: currencyFormat.format(item.originalPrice) + ' VND',
+                    text: currencyFormat.format(item.originalPrice) + ' INR',
                     style: textStyle2,
                   ),
                 ],
@@ -106,7 +106,7 @@ class ReservationListItem extends StatelessWidget {
                 style: textStyle,
                 children: [
                   TextSpan(
-                    text: currencyFormat.format(item.totalPrice) + ' VND',
+                    text: currencyFormat.format(item.totalPrice) + ' INR',
                     style: textStyle2,
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_disposebag/flutter_disposebag.dart';
@@ -191,15 +192,37 @@ class _HomePageState extends State<HomePage> with DisposeBagMixin {
     }();
   }
 
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xffC70039), Color(0xffFFFFFF)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
   @override
   Widget build(BuildContext context) {
     final movieRepo = Provider.of<MovieRepository>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Enjoy movies'),
+        elevation: 1,
+        centerTitle: true,
+        leading: CircleAvatar(
+          backgroundImage: AssetImage('assets/images/logobg.png'),
+          backgroundColor: Colors.transparent,
+          child: SizedBox(
+              width: 200.0,
+              height: 300.0,
+              child: Image.asset(
+                'assets/images/cslogo.png',
+                fit: BoxFit.contain,
+                height: double.infinity,
+                width: double.infinity,
+              )),
+        ),
+        title: Text('CS CINEMAS',
+            style: TextStyle(
+                fontFamily: 'Reggae One',
+                fontWeight: FontWeight.bold,
+                foreground: Paint()..shader = linearGradient)),
         actions: [
-          const ChangeLanguageButton(iconColor: null),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
@@ -342,7 +365,8 @@ class HomeLocationHeader extends StatelessWidget {
                             return Text(
                               data!.localizedName(context),
                               maxLines: 1,
-                              style: textTheme.headline6!.copyWith(fontSize: 13),
+                              style:
+                                  textTheme.headline6!.copyWith(fontSize: 13),
                             );
                           },
                         ),
@@ -455,6 +479,7 @@ class HomeHorizontalMoviesList extends StatelessWidget {
               );
             }
 
+            ;
             if (state.isLoading) {
               return Center(
                 child: SizedBox(
@@ -672,6 +697,7 @@ class HomeHorizontalMoviesList extends StatelessWidget {
           ),
         );
     }
+    throw StateError('Unknown $type');
   }
 
   String getDescription(Movie item, BuildContext context) {
@@ -686,6 +712,7 @@ class HomeHorizontalMoviesList extends StatelessWidget {
       case MovieType.mostRate:
         return '${item.rateStar.toStringAsFixed(2)} / 5';
     }
+    throw StateError('Missing type $type');
   }
 }
 
@@ -709,8 +736,15 @@ class ComingSoonHeader extends StatelessWidget {
                 horizontal: 8,
               ),
               decoration: BoxDecoration(
-                color: Color(0xff8690A0),
                 borderRadius: BorderRadius.circular(3),
+                gradient: LinearGradient(
+                  colors: const [
+                    Color(0xff143AE9),
+                    Color(0xffB821F9),
+                  ],
+                  begin: AlignmentDirectional.topStart,
+                  end: AlignmentDirectional.bottomEnd,
+                ),
               ),
               child: Hero(
                 tag: MovieType.comingSoon.toString(),
@@ -1008,9 +1042,9 @@ class NearbyTheatresList extends StatelessWidget {
           );
         }
 
-        final theatres = state.content!;
+        final theatres = state.content;
 
-        if (theatres.isEmpty) {
+        if (theatres!.isEmpty) {
           return SliverToBoxAdapter(
             child: Container(
               padding: padding,

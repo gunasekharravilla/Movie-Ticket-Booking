@@ -20,11 +20,9 @@ import '../domain/model/user.dart';
 import '../domain/repository/comment_repository.dart';
 import '../domain/repository/notification_repository.dart';
 import '../domain/repository/promotion_repository.dart';
-import '../domain/repository/reservation_repository.dart';
 import '../domain/repository/theatre_repository.dart';
 import '../domain/repository/ticket_repository.dart';
 import '../domain/repository/user_repository.dart';
-import '../fcm_notification.dart';
 import '../generated/l10n.dart';
 import '../utils/optional.dart';
 import '../utils/utils.dart';
@@ -52,6 +50,8 @@ import 'notifications/notifications_page.dart';
 import 'profile/profile_page.dart';
 import 'profile/reservation_detail/reservation_detail_page.dart';
 import 'profile/reservations/reservations_page.dart';
+import '../fcm_notification.dart';
+import '../domain/repository/reservation_repository.dart';
 
 class MainPage extends StatefulWidget {
   static const routeName = '/main';
@@ -66,6 +66,7 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
       final args = settings.arguments as Map<String, dynamic>;
 
       final mode = args['mode'] as CardPageMode;
+
       final key = ValueKey(mode);
 
       final card = args['card'] as Card;
@@ -86,6 +87,7 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
     },
     AddCardPage.routeName: (context, settings) {
       final mode = settings.arguments as CardPageMode;
+
       final key = ValueKey(mode);
 
       return BlocProvider<AddCardBloc>(
@@ -214,6 +216,14 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
         ReservationDetailPage(reservation: settings.arguments as Reservation),
     ...cardPages,
   };
+  static final ticketsRoutes = <String, AppScaffoldWidgetBuilder>{
+    Navigator.defaultRouteName: (context, settings) => ReservationsPage(),
+    ReservationDetailPage.routeName: (context, settings) {
+      return ReservationDetailPage(
+        reservation: settings.arguments as Reservation,
+      );
+    },
+  };
 
   static final favoritesRoutes = <String, AppScaffoldWidgetBuilder>{
     Navigator.defaultRouteName: (context, settings) => FavoritesPage(),
@@ -235,7 +245,6 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     listenToken ??= Provider.of<UserRepository>(context)
         .user$
         .where((optional) => optional is None)
@@ -274,6 +283,7 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
             favoritesRoutes[settings.name]!(context, settings),
         (context, settings) =>
             notificationsRoutes[settings.name]!(context, settings),
+        (context, settings) => ticketsRoutes[settings.name]!(context, settings),
         (context, settings) => profileRoutes[settings.name]!(context, settings),
       ],
       items: [
@@ -288,6 +298,10 @@ class _MainPageState extends State<MainPage> with DisposeBagMixin {
         BottomNavigationBarItem(
           icon: const Icon(Icons.notifications),
           label: S.of(context).notifications,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.confirmation_number_rounded),
+          label: S.of(context).tickets,
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.person_rounded),

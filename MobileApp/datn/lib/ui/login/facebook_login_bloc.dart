@@ -25,6 +25,9 @@ class FacebookLoginBloc extends DisposeCallbackBaseBloc {
   }) : super(dispose);
 
   factory FacebookLoginBloc(UserRepository userRepository) {
+    ///Assert
+    assert(userRepository != null, 'userRepository cannot be null');
+
     /// Controllers
     //ignore: close_sinks
     final submitLoginController = PublishSubject<void>();

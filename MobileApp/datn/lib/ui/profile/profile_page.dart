@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -77,6 +77,7 @@ class ProfilePage extends StatelessWidget {
         SpeedDialChild(
           child: Icon(
             Icons.credit_card,
+            size: 20,
             color: Colors.white,
           ),
           backgroundColor: color,

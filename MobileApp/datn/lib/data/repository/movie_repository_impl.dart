@@ -1,5 +1,4 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter/foundation.dart' hide Category;
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/model/category.dart';
@@ -19,9 +18,6 @@ import '../remote/response/movie_detail_response.dart';
 import '../remote/response/movie_response.dart';
 import '../remote/response/show_time_and_theatre_response.dart';
 import '../serializers.dart';
-
-// TODO: unnecessary_null_comparison
-// ignore_for_file: unnecessary_null_comparison
 
 class MovieRepositoryImpl implements MovieRepository {
   final AuthClient _authClient;
@@ -225,7 +221,7 @@ class MovieRepositoryImpl implements MovieRepository {
     };
 
     return Rx.fromCallable(() => _authClient
-        .getBody(buildUrl('/show-times/theatres/$theatreId'))
+        .getBody(buildUrl('/show-times/theatres/${theatreId}'))
         .then(mapResult));
   }
 
@@ -282,7 +278,7 @@ class MovieRepositoryImpl implements MovieRepository {
               'max_released_date': maxReleasedDate.toUtc().toIso8601String(),
               'min_duration': minDuration.toString(),
               'max_duration': maxDuration.toString(),
-              'age_type': describeEnum(ageType),
+              'age_type': ageType.toString().split('.')[1],
               if (selectedCategoryIds.isNotEmpty)
                 'category_ids': selectedCategoryIds.join(','),
               if (location != null) ...{

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:meta/meta.dart';
 
 import '../../../domain/model/theatre.dart';
 import '../../../generated/l10n.dart';

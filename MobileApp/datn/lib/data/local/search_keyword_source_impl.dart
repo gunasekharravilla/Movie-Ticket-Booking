@@ -13,7 +13,7 @@ import '../serializers.dart';
 import 'search_keyword_source.dart';
 
 class SearchKeywordSourceImpl implements SearchKeywordSource {
-  static const _queriesKey = 'com.hoc.datn.queries';
+  static const _queriesKey = 'com.chandu.cscinemas.queries';
   static const _maxLength = 16;
 
   final RxSharedPreferences _prefs;

@@ -5,6 +5,7 @@ extension ShowSnackBarBuildContextExtension on BuildContext {
     String message, [
     Duration duration = const Duration(seconds: 2),
   ]) {
+    ScaffoldMessengerState messengerState;
     try {
       final messengerState = ScaffoldMessenger.maybeOf(this);
       if (messengerState == null) {

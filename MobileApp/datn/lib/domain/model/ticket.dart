@@ -32,11 +32,11 @@ abstract class Ticket implements Built<Ticket, TicketBuilder> {
     required String id,
     required bool is_active,
     required int price,
-    required String? reservationId,
+    required String reservationId,
     required Seat seat,
     required String show_time,
     required DateTime createdAt,
     required DateTime updatedAt,
-    required Reservation? reservation,
+    required Reservation reservation,
   }) = _$Ticket._;
 }

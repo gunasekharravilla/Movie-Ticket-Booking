@@ -17,11 +17,13 @@ import 'data/remote/base_url.dart';
 import 'data/remote/response/notification_response.dart';
 import 'domain/model/notification.dart';
 
+FcmNotificationManager? _fcmNotificationManager;
+
 class FcmNotificationManager {
-  static const channelId = 'com.hoc.datn';
-  static const channelName = 'com.hoc.datn.channel';
-  static const channelDescription = 'Enjoy movie notification channel';
-  static const _notificationIdKey = 'com.hoc.datn.notification.id';
+  static const channelId = 'com.chandu.cscinemas';
+  static const channelName = 'com.chandu.cscinemas';
+  static const channelDescription = 'CS Cinemas notification channel';
+  static const _notificationIdKey = 'com.chandu.cscinemas.notification.id';
   static final _minId = -pow(2, 31).toInt();
   static final _maxId = pow(2, 31).toInt() - 1;
 
@@ -42,7 +44,6 @@ class FcmNotificationManager {
 
   var _setupLocalNotification = false;
   late final Future<void> _setupLocalNotificationFuture;
-
   final _cacheManager = DefaultCacheManager();
   final _reservationIdS = PublishSubject<String>();
 
@@ -51,7 +52,6 @@ class FcmNotificationManager {
   FcmNotificationManager(
       this._authClient, this._firebaseMessaging, this._prefs) {
     _setupLocalNotificationFuture = _setupNotification();
-
     final initial$ =
         _firebaseMessaging.getInitialMessage().asStream().whereNotNull();
 
@@ -59,6 +59,7 @@ class FcmNotificationManager {
         .asyncExpand(_handleRemoteMessage)
         .publish()
           ..connect();
+    _fcmNotificationManager = this;
   }
 
   Future<Notification> _getNotificationById(String id) {
@@ -100,7 +101,6 @@ class FcmNotificationManager {
         return;
       }
     }
-
     try {
       print('>>>>>>>>>>> onMessage: $message');
 
@@ -108,12 +108,9 @@ class FcmNotificationManager {
       final data = message.data;
 
       File? imageFile;
-      final imageUrl = data['image'];
-      if (imageUrl is String && imageUrl.isNotEmpty) {
-        try {
-          imageFile = await _cacheManager.getSingleFile(imageUrl);
-        } catch (_) {}
-      }
+      try {
+        imageFile = await _cacheManager.getSingleFile(data['image'] ?? '');
+      } catch (_) {}
 
       final androidPlatformChannelSpecifics = AndroidNotificationDetails(
         channelId,
@@ -184,5 +181,15 @@ class FcmNotificationManager {
 ///
 /// To verify things are working, check out the native platform logs.
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
-  print('Handling a background message ${message.messageId}');
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  final fcmNotificationManager = _fcmNotificationManager;
+  if (fcmNotificationManager == null) {
+    return;
+  }
+
+  print(
+      'Handling a background message ${message.messageId} <-> $fcmNotificationManager');
+
+  fcmNotificationManager._handleRemoteMessage(message);
 }

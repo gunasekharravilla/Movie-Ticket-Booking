@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../domain/model/movie.dart';
 
@@ -15,7 +15,7 @@ class AgeTypeWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: ageType == AgeType.P ? Colors.green : Colors.red,
+        color: ageType == AgeType.UA ? Colors.green : Colors.red,
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(

@@ -24,8 +24,6 @@ abstract class ReservationRepository {
     required int page,
     required int perPage,
   });
-
   Stream<Reservation> getReservationById(String id);
-
   Stream<Uint8List> getQrCode(String id);
 }

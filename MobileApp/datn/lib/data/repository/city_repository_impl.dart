@@ -15,30 +15,30 @@ import '../local/user_local_source.dart';
 // ignore_for_file: deprecated_member_use_from_same_package
 
 class CityRepositoryImpl implements CityRepository {
-  static const _city_key = 'com.hoc.datn.city';
+  static const _city_key = 'com.chandu.cscinemas.city';
 
   static final _allCities = <City>[
     City((b) => b..name = CityRepository.nationwide),
     City(
       (b) => b
-        ..name = 'Đà Nẵng'
+        ..name = 'Tirupati'
         ..location = (b.location
-          ..latitude = 16.047079
-          ..longitude = 108.206230),
+          ..latitude = 13.6390501
+          ..longitude = 79.4230402),
     ),
     City(
       (b) => b
-        ..name = 'Hà Nội'
+        ..name = 'Pileru'
         ..location = (b.location
-          ..latitude = 21.027763
-          ..longitude = 105.834160),
+          ..latitude = 13.651179
+          ..longitude = 79.018310),
     ),
     City(
       (b) => b
-        ..name = 'TP. HCM'
+        ..name = 'Nagari'
         ..location = (b.location
-          ..latitude = 10.762622
-          ..longitude = 106.660172),
+          ..latitude = 13.325125
+          ..longitude = 79.587711),
     ),
   ].build();
 
