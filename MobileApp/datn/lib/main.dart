@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'package:built_value/built_value.dart' show newBuiltValueToStringHelper;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -104,7 +104,7 @@ void main() async {
   final normalClient = NormalClient(client, httpTimeout);
   print(normalClient);
 
-  Function0<Future<void>> _onSignOut;
+  late Function0<Future<void>> _onSignOut;
   final authClient = AuthClient(
     client,
     httpTimeout,
